@@ -42,7 +42,7 @@
   color: "#3F3D56";
   font-style: normal;
   font-weight: 500;
-  font-size: "1.5em";
+  font-size: 1.6em;
 }
 
 .endline {
@@ -77,5 +77,5 @@
   position: absolute;
   left: 30%;
   /* top: 20%; */
-  transform: translate(-20%, -10%);
+  transform: translate(-20%, -20%);
 }
