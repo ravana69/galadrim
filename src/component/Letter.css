@@ -1,0 +1,54 @@
+.Typewriter__cursor_override {
+  -webkit-animation: Typewriter-cursor 1s infinite;
+  animation: Typewriter-cursor 1s infinite;
+  margin-left: 1px;
+  color: red;
+  font-size: 24px;
+}
+@-webkit-keyframes Typewriter-cursor {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes Typewriter-cursor {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.stop {
+  visibility: hidden;
+}
+
+@font-face {
+  font-family: PlayfairDisplay;
+  src: url("PlayfairDisplay-VariableFont_wght.ttf");
+}
+
+.letter {
+  font-family: PlayfairDisplay;
+  color: "#3F3D56";
+  font-style: normal;
+  font-weight: 500;
+  font-size: "1.5em";
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
