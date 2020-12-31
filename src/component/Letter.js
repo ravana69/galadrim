@@ -61,7 +61,7 @@ const Letter = () => {
           options={{
             strings: retrievedData,
             cursorClassName: className,
-            delay: 16,
+            delay: 17,
             // delay: 2,
             autoStart: true,
             loop: false,
