@@ -2,7 +2,7 @@ import Letter from "./component/Letter";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Letter />
     </div>
   );
