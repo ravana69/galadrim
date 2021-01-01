@@ -29,7 +29,7 @@ const formatLetter = (props) => {
   let stringToReturn = [
     ...props["text"],
     [
-      `<p class="letter endline">  <a href=${props["url"]}> <span class=title> ${props["title"]} </span> </a>, written by <span class=author> ${props["author"]} </span> </p>  `,
+      `<p class="letter endline">  <a href=${props["url"]}> ${props["title"]} </a>, written by <span class=author> ${props["author"]} </span> </p>  `,
     ],
   ];
   // console.log("hey cc 1");
