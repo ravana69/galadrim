@@ -30,6 +30,7 @@ const formatLetter = (props) => {
     ...props["text"],
     [
       `<p class="letter endline">  <a href=${props["url"]}> ${props["title"]} </a>, written by <span class=author> ${props["author"]} </span> </p>  `,
+      `<div class="letter endline" style="font-size:0.5em;">Icons made by <a href="https://www.flaticon.com/authors/nhor-phai" title="Nhor Phai">Nhor Phai</a></div>`,
     ],
   ];
   // console.log("hey cc 1");
