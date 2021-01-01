@@ -46,6 +46,11 @@
   font-size: 1.8em;
 }
 
+a {
+  color: "#3F3D56";
+  text-decoration: none;
+}
+
 .endline {
   text-align: right;
   margin-bottom: 10px;
