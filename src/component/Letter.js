@@ -5,6 +5,11 @@ import Typewriter from "typewriter-effect";
 
 import useMediaQuery from "react-responsive";
 
+const getRandomArbitrary = (min, max) => {
+  const rand = Math.random() * (max - min) + min;
+  console.log("random : " + rand);
+  return rand;
+};
 const NewlineText = (text) => {
   const arr = text.split("\n").map((str) =>
     str
@@ -50,10 +55,10 @@ const letterToSequence = ({
           (e) => (
             // eslint-disable-next-line
             typewriter.typeString(e + "<span class=letter> </span>"),
-            typewriter.pauseFor(300)
+            typewriter.pauseFor(getRandomArbitrary(400, 900))
           )
         ),
-        typewriter.pauseFor(1000)
+        typewriter.pauseFor(getRandomArbitrary(600, 1400))
       )
     ),
     typewriter.callFunction(() => {
