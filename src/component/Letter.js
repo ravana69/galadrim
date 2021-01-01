@@ -1,26 +1,77 @@
 import "./Letter.css";
 
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import Typewriter from "typewriter-effect";
 
+import useMediaQuery from "react-responsive";
+
 const NewlineText = (text) => {
-  const newText = text.split("\n").map((str) => `<p class=letter>${str}</p>`);
-  return newText.join("");
+  const arr = text.split("\n").map((str) =>
+    str
+      .replace(/([.?!])\s*(?=[A-Z])/g, "$1|")
+      .split("|")
+      .map((e) => `<span class=letter>${e}</span>`)
+  );
+
+  const toFilter = ["<span class=letter></span>"];
+  const newText = arr.filter((liste) => liste[0] !== toFilter[0]);
+  // console.log(toFilter);
+  // console.log(newText);
+  return newText;
 };
 
 const formatLetter = (props) => {
-  let stringToReturn;
-  stringToReturn = props["text"];
-  stringToReturn += `<p class="letter endline">  <a href=${props["url"]}> <span class=title> ${props["title"]} </span> </a>, written by <span class=author> ${props["author"]} </span> </p>  `;
-  // stringToReturn += `<br/> <span class=url> <a href=${props["url"]}> ${props["url"]} </a> </span> </p>`;
+  let stringToReturn = [
+    ...props["text"],
+    [
+      `<p class="letter endline">  <a href=${props["url"]}> <span class=title> ${props["title"]} </span> </a>, written by <span class=author> ${props["author"]} </span> </p>  `,
+    ],
+  ];
+  // console.log("hey cc 1");
+  // console.log(stringToReturn);
   return stringToReturn;
+};
+
+const letterToSequence = ({
+  formatedLetter,
+  setterClassName,
+  setterFunctionInit,
+}) => {
+  const tempo = () => (typewriter) => (
+    typewriter.callFunction(() => {
+      console.log("");
+      // eslint-disable-next-line
+    }),
+    formatedLetter.map(
+      (bigArray) => (
+        // eslint-disable-next-line
+        typewriter.typeString("<p>"),
+        bigArray.map(
+          (e) => (
+            // eslint-disable-next-line
+            typewriter.typeString(e + "<span class=letter> </span>"),
+            typewriter.pauseFor(300)
+          )
+        ),
+        typewriter.pauseFor(1000)
+      )
+    ),
+    typewriter.callFunction(() => {
+      console.log("");
+    }),
+    typewriter.start()
+  );
+
+  setterFunctionInit(tempo);
 };
 
 const Letter = () => {
   const [className, setClassName] = useState(
     "Typewriter__cursor_override stop"
   );
-  const [retrievedData, setRetrievedData] = useState([]);
+  const [functionTypewriter, setFunctionTypewriter] = useState();
+
+  const refTypeWriter = useRef(null);
 
   useEffect(() => {
     fetch(
@@ -43,7 +94,12 @@ const Letter = () => {
                   url: response[0].data.children[0].data.url,
                 };
                 const totalString = formatLetter(tempDic);
-                setRetrievedData(totalString);
+                letterToSequence({
+                  formatedLetter: totalString,
+                  setterClassName: setClassName,
+                  setterFunctionInit: setFunctionTypewriter,
+                });
+                // setRetrievedData(totalString);
               }
             } catch (e) {
               console.log(e);
@@ -54,28 +110,26 @@ const Letter = () => {
     );
   }, []);
 
+  // Check if phone/tablet or desktop
+  const tertiaryOperator = useMediaQuery({ query: "(max-width: 1224px)" })
+    ? 33
+    : 26;
+
   return (
     <div className="wrapper">
       <div className="center">
         <Typewriter
+          key={functionTypewriter}
+          ref={refTypeWriter}
           options={{
-            strings: retrievedData,
+            strings: "",
             cursorClassName: className,
-            delay: 28,
-            // delay: 2,
+            delay: tertiaryOperator,
             autoStart: true,
             loop: false,
-            showCursor: false,
+            showCursor: true,
           }}
-          onInit={(typewriter) => {
-            typewriter
-              .typeString("")
-              .callFunction(() => {})
-              .callFunction(() => {
-                setClassName("Typewriter__cursor_override stop");
-              })
-              .start();
-          }}
+          onInit={functionTypewriter}
         />
       </div>
     </div>

@@ -1,9 +1,10 @@
 .Typewriter__cursor_override {
   -webkit-animation: Typewriter-cursor 1s infinite;
   animation: Typewriter-cursor 1s infinite;
+  font-family: PlayfairDisplay;
   margin-left: 1px;
   color: red;
-  font-size: 24px;
+  font-size: 1.8em;
 }
 @-webkit-keyframes Typewriter-cursor {
   0% {
