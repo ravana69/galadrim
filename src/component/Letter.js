@@ -3,7 +3,7 @@ import "./Letter.css";
 import { useState, useRef, useEffect } from "react";
 import Typewriter from "typewriter-effect";
 
-import useMediaQuery from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 
 const getRandomArbitrary = (min, max) => {
   const rand = Math.random() * (max - min) + min;
@@ -20,8 +20,6 @@ const NewlineText = (text) => {
 
   const toFilter = ["<span class=letter></span>"];
   const newText = arr.filter((liste) => liste[0] !== toFilter[0]);
-  // console.log(toFilter);
-  // console.log(newText);
   return newText;
 };
 
@@ -33,8 +31,6 @@ const formatLetter = (props) => {
       `<div class="letter endline" style="font-size:0.5em;">Icons made by <a href="https://www.flaticon.com/authors/nhor-phai" title="Nhor Phai">Nhor Phai</a></div>`,
     ],
   ];
-  // console.log("hey cc 1");
-  // console.log(stringToReturn);
   return stringToReturn;
 };
 
@@ -76,6 +72,7 @@ const Letter = () => {
     "Typewriter__cursor_override stop"
   );
   const [functionTypewriter, setFunctionTypewriter] = useState();
+  const [delay, setDelay] = useState(34);
 
   const refTypeWriter = useRef(null);
 
@@ -105,7 +102,6 @@ const Letter = () => {
                   setterClassName: setClassName,
                   setterFunctionInit: setFunctionTypewriter,
                 });
-                // setRetrievedData(totalString);
               }
             } catch (e) {
               console.log(e);
@@ -116,14 +112,14 @@ const Letter = () => {
     );
   }, []);
 
-  // Check if phone/tablet or desktop
-
   const isTabletOrMobileDevice = useMediaQuery({
     query: "(max-device-width: 1224px)",
   });
-  const tertiaryOperator = isTabletOrMobileDevice ? 300 : 26;
 
-  console.log("tertiary operator : " + tertiaryOperator);
+  useEffect(() => {
+    setDelay(isTabletOrMobileDevice ? 34 : 26);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="wrapper">
@@ -134,7 +130,7 @@ const Letter = () => {
           options={{
             strings: "",
             cursorClassName: className,
-            delay: tertiaryOperator,
+            delay: delay,
             autoStart: true,
             loop: false,
             showCursor: true,
