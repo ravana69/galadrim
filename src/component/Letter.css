@@ -51,6 +51,11 @@ a {
   /* color: #3f3d56 !important; */
   text-decoration: none;
 }
+/* 
+br {
+  margin-top: 0em;
+  margin-bottom: 10%;
+} */
 
 .endline {
   text-align: right;

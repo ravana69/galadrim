@@ -135,7 +135,7 @@ const Letter = ({ cpt, setterCpt }) => {
   }, []);
 
   useEffect(() => {
-    setDelay(isTabletOrMobile ? 30 : 24);
+    setDelay(isTabletOrMobile ? 400 : 24);
     // setDelay(isTabletOrMobile ? 1 : 1);
     // eslint-disable-next-line
   }, []);
