@@ -2,12 +2,13 @@ import "./Letter.css";
 
 import { useState, useRef, useEffect } from "react";
 import Typewriter from "typewriter-effect";
-
 import { useMediaQuery } from "react-responsive";
+
+import Timer from "./Timer";
 
 const getRandomArbitrary = (min, max) => {
   const rand = Math.random() * (max - min) + min;
-  console.log("random : " + rand);
+  // console.log("random : " + rand);
   return rand;
 };
 const NewlineText = (text) => {
@@ -18,7 +19,7 @@ const NewlineText = (text) => {
       .map((e) => `<span class=letter>${e} </span>`)
   );
 
-  const toFilter = ["<span class=letter></span>"];
+  const toFilter = ["<span class=letter> </span>"];
   const newText = arr.filter((liste) => liste[0] !== toFilter[0]);
   return newText;
 };
@@ -28,6 +29,7 @@ const formatLetter = (props) => {
     ...props["text"],
     [
       `<p class="letter endline">  <a href=${props["url"]}> ${props["title"]} </a>, written by <span class=author> ${props["author"]} </span> </p>  `,
+      // `<div class="letter endline" style="font-size:0.5em;">Icons made by <a href="https://www.flaticon.com/authors/nhor-phai" title="Nhor Phai">Nhor Phai</a></div> <br>`,
       `<div class="letter endline" style="font-size:0.5em;">Icons made by <a href="https://www.flaticon.com/authors/nhor-phai" title="Nhor Phai">Nhor Phai</a></div>`,
     ],
   ];
@@ -38,6 +40,7 @@ const letterToSequence = ({
   formatedLetter,
   setterClassName,
   setterFunctionInit,
+  setterFunctionFinished,
 }) => {
   const tempo = () => (typewriter) => (
     typewriter.callFunction(() => {
@@ -59,7 +62,7 @@ const letterToSequence = ({
       )
     ),
     typewriter.callFunction(() => {
-      console.log("");
+      setterFunctionFinished(true);
     }),
     typewriter.start()
   );
@@ -67,12 +70,15 @@ const letterToSequence = ({
   setterFunctionInit(tempo);
 };
 
-const Letter = () => {
+const increaseValue = (value, Setter) => Setter(value + 1);
+
+const Letter = ({ cpt, setterCpt }) => {
   const [className, setClassName] = useState(
     "Typewriter__cursor_override stop"
   );
   const [functionTypewriter, setFunctionTypewriter] = useState();
-  const [delay, setDelay] = useState(34);
+  const [delay, setDelay] = useState(26);
+  const [isFinished, setIsFinished] = useState(false);
 
   const refTypeWriter = useRef(null);
 
@@ -101,6 +107,7 @@ const Letter = () => {
                   formatedLetter: totalString,
                   setterClassName: setClassName,
                   setterFunctionInit: setFunctionTypewriter,
+                  setterFunctionFinished: setIsFinished,
                 });
               }
             } catch (e) {
@@ -112,12 +119,13 @@ const Letter = () => {
     );
   }, []);
 
+  //Tablet or mobile
   const isTabletOrMobileDevice = useMediaQuery({
     query: "(max-device-width: 1224px)",
   });
-
   useEffect(() => {
-    setDelay(isTabletOrMobileDevice ? 30 : 26);
+    setDelay(isTabletOrMobileDevice ? 30 : 24);
+    // setDelay(isTabletOrMobileDevice ? 1 : 1);
     // eslint-disable-next-line
   }, []);
 
@@ -137,6 +145,11 @@ const Letter = () => {
           }}
           onInit={functionTypewriter}
         />
+        {isFinished && (
+          <Timer function={() => increaseValue(cpt, setterCpt)}>
+            New letter in:{" "}
+          </Timer>
+        )}
       </div>
     </div>
   );
