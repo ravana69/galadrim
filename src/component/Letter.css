@@ -61,6 +61,35 @@ br {
   margin-bottom: 10px;
 }
 
+.timer {
+  position: relative;
+  bottom: 2%;
+  text-align: center;
+  animation: center-timer 10s linear 0s 1;
+}
+@-webkit-keyframes center-timer {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes center-timer {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .author {
   font-weight: 800;
 }

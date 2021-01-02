@@ -2,8 +2,9 @@ import "./Letter.css";
 
 import { useState, useRef, useEffect } from "react";
 import Typewriter from "typewriter-effect";
-
 import { useMediaQuery } from "react-responsive";
+
+import Timer from "./Timer";
 
 const getRandomArbitrary = (min, max) => {
   const rand = Math.random() * (max - min) + min;
@@ -38,6 +39,7 @@ const letterToSequence = ({
   formatedLetter,
   setterClassName,
   setterFunctionInit,
+  setterFunctionFinished,
 }) => {
   const tempo = () => (typewriter) => (
     typewriter.callFunction(() => {
@@ -59,7 +61,7 @@ const letterToSequence = ({
       )
     ),
     typewriter.callFunction(() => {
-      console.log("");
+      setterFunctionFinished(true);
     }),
     typewriter.start()
   );
@@ -72,7 +74,8 @@ const Letter = () => {
     "Typewriter__cursor_override stop"
   );
   const [functionTypewriter, setFunctionTypewriter] = useState();
-  const [delay, setDelay] = useState(34);
+  const [delay, setDelay] = useState(26);
+  const [isFinished, setIsFinished] = useState(false);
 
   const refTypeWriter = useRef(null);
 
@@ -101,6 +104,7 @@ const Letter = () => {
                   formatedLetter: totalString,
                   setterClassName: setClassName,
                   setterFunctionInit: setFunctionTypewriter,
+                  setterFunctionFinished: setIsFinished,
                 });
               }
             } catch (e) {
@@ -112,12 +116,13 @@ const Letter = () => {
     );
   }, []);
 
+  //Tablet or mobile
   const isTabletOrMobileDevice = useMediaQuery({
     query: "(max-device-width: 1224px)",
   });
-
   useEffect(() => {
-    setDelay(isTabletOrMobileDevice ? 30 : 26);
+    // setDelay(isTabletOrMobileDevice ? 30 : 26);
+    setDelay(isTabletOrMobileDevice ? 1 : 1);
     // eslint-disable-next-line
   }, []);
 
@@ -137,6 +142,7 @@ const Letter = () => {
           }}
           onInit={functionTypewriter}
         />
+        {isFinished && <Timer>New letter in: </Timer>}
       </div>
     </div>
   );
