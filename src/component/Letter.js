@@ -19,7 +19,7 @@ const NewlineText = (text) => {
       .map((e) => `<span class=letter>${e} </span>`)
   );
 
-  const toFilter = ["<span class=letter></span>"];
+  const toFilter = ["<span class=letter> </span>"];
   const newText = arr.filter((liste) => liste[0] !== toFilter[0]);
   return newText;
 };
@@ -124,7 +124,7 @@ const Letter = ({ cpt, setterCpt }) => {
     query: "(max-device-width: 1224px)",
   });
   useEffect(() => {
-    setDelay(isTabletOrMobileDevice ? 32 : 26);
+    setDelay(isTabletOrMobileDevice ? 30 : 24);
     // setDelay(isTabletOrMobileDevice ? 1 : 1);
     // eslint-disable-next-line
   }, []);

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import "./Letter.css";
 
 const Timer = (props) => {
-  const { initialMinute = 0, initialSeconds = 35 } = props;
+  const { initialMinute = 0, initialSeconds = 25 } = props;
   const [minutes, setMinutes] = useState(initialMinute);
   const [seconds, setSeconds] = useState(initialSeconds);
   useEffect(() => {

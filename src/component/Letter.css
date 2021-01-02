@@ -39,22 +39,22 @@
 }
 
 .letter {
+  text-align: justify-all;
   font-family: PlayfairDisplay;
-  color: "#3F3D56";
+  color: #3f3d56;
   font-style: normal;
   font-weight: 500;
   font-size: 1.8em;
-  text-align: justify;
 }
 
 a {
-  color: "#3F3D56" !important;
+  /* color: #3f3d56 !important; */
   text-decoration: none;
 }
 
 br {
   margin-top: 0em;
-  margin-bottom: 0.5em;
+  margin-bottom: 1.7em;
 }
 
 .endline {
@@ -64,7 +64,7 @@ br {
 
 .timer {
   position: relative;
-  bottom: 5%;
+  bottom: 2%;
   height: 0;
   max-height: 0;
   min-height: 0;
