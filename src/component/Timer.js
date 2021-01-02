@@ -15,6 +15,7 @@ const Timer = (props) => {
       if (seconds === 0) {
         if (minutes === 0) {
           clearInterval(myInterval);
+          props.function();
         } else {
           setMinutes(minutes - 1);
           setSeconds(59);

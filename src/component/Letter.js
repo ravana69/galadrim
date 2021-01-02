@@ -8,7 +8,7 @@ import Timer from "./Timer";
 
 const getRandomArbitrary = (min, max) => {
   const rand = Math.random() * (max - min) + min;
-  console.log("random : " + rand);
+  // console.log("random : " + rand);
   return rand;
 };
 const NewlineText = (text) => {
@@ -69,7 +69,9 @@ const letterToSequence = ({
   setterFunctionInit(tempo);
 };
 
-const Letter = () => {
+const increaseValue = (value, Setter) => Setter(value + 1);
+
+const Letter = ({ cpt, setterCpt }) => {
   const [className, setClassName] = useState(
     "Typewriter__cursor_override stop"
   );
@@ -121,8 +123,8 @@ const Letter = () => {
     query: "(max-device-width: 1224px)",
   });
   useEffect(() => {
-    // setDelay(isTabletOrMobileDevice ? 30 : 26);
-    setDelay(isTabletOrMobileDevice ? 1 : 1);
+    setDelay(isTabletOrMobileDevice ? 32 : 26);
+    // setDelay(isTabletOrMobileDevice ? 1 : 1);
     // eslint-disable-next-line
   }, []);
 
@@ -142,7 +144,11 @@ const Letter = () => {
           }}
           onInit={functionTypewriter}
         />
-        {isFinished && <Timer>New letter in: </Timer>}
+        {isFinished && (
+          <Timer function={() => increaseValue(cpt, setterCpt)}>
+            New letter in:{" "}
+          </Timer>
+        )}
       </div>
     </div>
   );
