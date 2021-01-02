@@ -41,6 +41,7 @@ const letterToSequence = ({
   setterClassName,
   setterFunctionInit,
   setterFunctionFinished,
+  marginBottom,
 }) => {
   const tempo = () => (typewriter) => (
     typewriter.callFunction(() => {
@@ -49,8 +50,10 @@ const letterToSequence = ({
     }),
     formatedLetter.map(
       (bigArray) => (
-        // eslint-disable-next-line
-        typewriter.typeString("<br>"),
+        typewriter.typeString(
+          '<br style="margin-bottom: ' + marginBottom + '%;">'
+          // eslint-disable-next-line
+        ),
         bigArray.map(
           (e) => (
             // eslint-disable-next-line
@@ -82,6 +85,11 @@ const Letter = ({ cpt, setterCpt }) => {
 
   const refTypeWriter = useRef(null);
 
+  //Tablet or mobile
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: "(max-device-width: 1224px)",
+  });
+
   useEffect(() => {
     fetch(
       "https://www.reddit.com/r/unsentletters/random.json?&raw_json=1"
@@ -108,6 +116,8 @@ const Letter = ({ cpt, setterCpt }) => {
                   setterClassName: setClassName,
                   setterFunctionInit: setFunctionTypewriter,
                   setterFunctionFinished: setIsFinished,
+                  marginBottom: isTabletOrMobileDevice ? "14" : "4",
+                  // marginBottom: "12",
                 });
               }
             } catch (e) {
@@ -117,12 +127,9 @@ const Letter = ({ cpt, setterCpt }) => {
         )
       )
     );
+    // eslint-disable-next-line
   }, []);
 
-  //Tablet or mobile
-  const isTabletOrMobileDevice = useMediaQuery({
-    query: "(max-device-width: 1224px)",
-  });
   useEffect(() => {
     setDelay(isTabletOrMobileDevice ? 30 : 24);
     // setDelay(isTabletOrMobileDevice ? 1 : 1);
