@@ -122,7 +122,7 @@ const Letter = ({ cpt, setterCpt }) => {
                   setterClassName: setClassName,
                   setterFunctionInit: setFunctionTypewriter,
                   setterFunctionFinished: setIsFinished,
-                  marginBottom: isTabletOrMobile ? "4" : "2.5",
+                  marginBottom: isTabletOrMobile ? "3.4" : "2.5",
                 });
               }
             } catch (e) {
