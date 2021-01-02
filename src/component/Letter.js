@@ -86,8 +86,13 @@ const Letter = ({ cpt, setterCpt }) => {
   const refTypeWriter = useRef(null);
 
   //Tablet or mobile
-  const isTabletOrMobileDevice = useMediaQuery({
-    query: "(max-device-width: 1224px)",
+  // const isTabletOrMobile = useMediaQuery({
+  //   query: "(max-device-width: 1224px)",
+  // });
+
+  //Tablet
+  const isMobile = useMediaQuery({
+    query: "(max-device-width: 768px)",
   });
 
   useEffect(() => {
@@ -116,8 +121,7 @@ const Letter = ({ cpt, setterCpt }) => {
                   setterClassName: setClassName,
                   setterFunctionInit: setFunctionTypewriter,
                   setterFunctionFinished: setIsFinished,
-                  marginBottom: isTabletOrMobileDevice ? "14" : "4",
-                  // marginBottom: "12",
+                  marginBottom: isMobile ? "16" : "4",
                 });
               }
             } catch (e) {
@@ -131,8 +135,8 @@ const Letter = ({ cpt, setterCpt }) => {
   }, []);
 
   useEffect(() => {
-    setDelay(isTabletOrMobileDevice ? 30 : 24);
-    // setDelay(isTabletOrMobileDevice ? 1 : 1);
+    setDelay(isMobile ? 30 : 24);
+    // setDelay(isMobile ? 1 : 1);
     // eslint-disable-next-line
   }, []);
 
