@@ -117,9 +117,11 @@ const Letter = () => {
   }, []);
 
   // Check if phone/tablet or desktop
-  const tertiaryOperator = useMediaQuery({ query: "(max-width: 1224px)" })
-    ? 300
-    : 26;
+
+  const isTabletOrMobileDevice = useMediaQuery({
+    query: "(max-device-width: 1224px)",
+  });
+  const tertiaryOperator = isTabletOrMobileDevice ? 300 : 26;
 
   console.log("tertiary operator : " + tertiaryOperator);
 
