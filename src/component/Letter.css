@@ -51,6 +51,11 @@ a {
   text-decoration: none;
 }
 
+br {
+  margin-top: 0em;
+  margin-bottom: 0.5em;
+}
+
 .endline {
   text-align: right;
   margin-bottom: 10px;
