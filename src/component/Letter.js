@@ -15,7 +15,7 @@ const NewlineText = (text) => {
     str
       .replace(/([.?!])\s*(?=[A-Z])/g, "$1|")
       .split("|")
-      .map((e) => `<span class=letter>${e}</span>`)
+      .map((e) => `<span class=letter>${e} </span>`)
   );
 
   const toFilter = ["<span class=letter></span>"];
@@ -51,11 +51,11 @@ const letterToSequence = ({
     formatedLetter.map(
       (bigArray) => (
         // eslint-disable-next-line
-        typewriter.typeString("<p>"),
+        typewriter.typeString("<br>"),
         bigArray.map(
           (e) => (
             // eslint-disable-next-line
-            typewriter.typeString(e + "<span class=letter> </span>"),
+            typewriter.typeString(e),
             typewriter.pauseFor(getRandomArbitrary(400, 900))
           )
         ),
@@ -118,8 +118,10 @@ const Letter = () => {
 
   // Check if phone/tablet or desktop
   const tertiaryOperator = useMediaQuery({ query: "(max-width: 1224px)" })
-    ? 33
+    ? 300
     : 26;
+
+  console.log("tertiary operator : " + tertiaryOperator);
 
   return (
     <div className="wrapper">
