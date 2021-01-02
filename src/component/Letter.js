@@ -51,7 +51,8 @@ const letterToSequence = ({
     formatedLetter.map(
       (bigArray) => (
         typewriter.typeString(
-          '<br style="margin-bottom: ' + marginBottom + '%;">'
+          '<br style="margin-bottom: ' + marginBottom + 'em;">'
+          // "<br >"
           // eslint-disable-next-line
         ),
         bigArray.map(
@@ -121,7 +122,7 @@ const Letter = ({ cpt, setterCpt }) => {
                   setterClassName: setClassName,
                   setterFunctionInit: setFunctionTypewriter,
                   setterFunctionFinished: setIsFinished,
-                  marginBottom: isTabletOrMobile ? "16" : "4",
+                  marginBottom: isTabletOrMobile ? "4" : "2.5",
                 });
               }
             } catch (e) {
@@ -135,7 +136,7 @@ const Letter = ({ cpt, setterCpt }) => {
   }, []);
 
   useEffect(() => {
-    setDelay(isTabletOrMobile ? 400 : 24);
+    setDelay(isTabletOrMobile ? 30 : 24);
     // setDelay(isTabletOrMobile ? 1 : 1);
     // eslint-disable-next-line
   }, []);
@@ -157,9 +158,7 @@ const Letter = ({ cpt, setterCpt }) => {
           onInit={functionTypewriter}
         />
         {isFinished && (
-          <Timer function={() => increaseValue(cpt, setterCpt)}>
-            New letter in:{" "}
-          </Timer>
+          <Timer function={() => increaseValue(cpt, setterCpt)}></Timer>
         )}
       </div>
     </div>
