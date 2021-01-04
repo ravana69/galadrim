@@ -132,7 +132,7 @@ const Letter = ({ cpt, setterCpt }) => {
       )
     );
 
-    setDelay(isTabletOrMobile ? 58 : 41);
+    setDelay(isTabletOrMobile ? 50 : 37);
     // eslint-disable-next-line
   }, []);
 
