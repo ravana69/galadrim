@@ -1,8 +1,8 @@
 import "./Letter.css";
 
 import { useState, useRef, useEffect } from "react";
-import Typewriter from "typewriter-effect";
 import { useMediaQuery } from "react-responsive";
+import TypeIt from "typeit-react";
 
 import Timer from "./Timer";
 
@@ -30,7 +30,7 @@ const formatLetter = (props) => {
     [
       `<p class="letter endline">  <a href=${props["url"]}> ${props["title"]} </a>, written by <span class=author> ${props["author"]} </span> </p>  `,
       // `<div class="letter endline" style="font-size:0.5em;">Icons made by <a href="https://www.flaticon.com/authors/nhor-phai" title="Nhor Phai">Nhor Phai</a></div> <br>`,
-      `<div class="letter endline" style="font-size:0.5em;">Icons made by <a href="https://www.flaticon.com/authors/nhor-phai" title="Nhor Phai">Nhor Phai</a></div>`,
+      `<div class="letter endline" style="font-size:0.8em;">Made with 💖 by <a href="https://www.linkedin.com/in/gautier-arcin-309405145/" title="Gautier Arcin">Gautier Arcin</a>. Icons made by <a href="https://www.flaticon.com/authors/nhor-phai" title="Nhor Phai">Nhor Phai</a>.</div>`,
     ],
   ];
   return stringToReturn;
@@ -38,38 +38,41 @@ const formatLetter = (props) => {
 
 const letterToSequence = ({
   formatedLetter,
-  setterClassName,
   setterFunctionInit,
-  setterFunctionFinished,
   marginBottom,
 }) => {
-  const tempo = () => (typewriter) => (
-    typewriter.callFunction(() => {
-      console.log("");
-      // eslint-disable-next-line
-    }),
-    formatedLetter.map(
-      (bigArray) => (
-        typewriter.typeString(
-          '<br style="margin-bottom: ' + marginBottom + 'em;">'
-          // "<br >"
-          // eslint-disable-next-line
-        ),
+  const tempo = () => (instance) => {
+    const len = formatedLetter.length;
+    // eslint-disable-next-line
+    formatedLetter.map((bigArray, i) => {
+      instance.type('<br style="margin-bottom: ' + marginBottom + 'em;">');
+      if (i + 1 !== len) {
         bigArray.map(
           (e) => (
             // eslint-disable-next-line
-            typewriter.typeString(e),
-            typewriter.pauseFor(getRandomArbitrary(400, 900))
+            instance.type(e), instance.pause(getRandomArbitrary(400, 900))
           )
-        ),
-        typewriter.pauseFor(getRandomArbitrary(600, 1400))
-      )
-    ),
-    typewriter.callFunction(() => {
-      setterFunctionFinished(true);
-    }),
-    typewriter.start()
-  );
+        );
+        instance.pause(getRandomArbitrary(600, 1400));
+      } else {
+        // cursor.style.visibility = "hidden";
+        instance.exec(async () => {
+          document.getElementsByClassName("ti-cursor")[0].style.visibility =
+            "hidden";
+        });
+        instance.type(formatedLetter[i][0]);
+        instance.type(formatedLetter[i][1]);
+        instance.break();
+        instance.break();
+        instance.break();
+      }
+    });
+
+    // instance.move(-5, { speed: 1 });
+
+    return instance;
+  };
+  console.log("séquence : " + tempo);
 
   setterFunctionInit(tempo);
 };
@@ -77,24 +80,22 @@ const letterToSequence = ({
 const increaseValue = (value, Setter) => Setter(value + 1);
 
 const Letter = ({ cpt, setterCpt }) => {
-  const [className, setClassName] = useState(
-    "Typewriter__cursor_override stop"
+  const [functionTypewriter, setFunctionTypewriter] = useState(
+    () => (instance) => {
+      instance.type("");
+      return instance;
+    }
   );
-  const [functionTypewriter, setFunctionTypewriter] = useState();
   const [delay, setDelay] = useState(26);
-  const [isFinished, setIsFinished] = useState(false);
+  const [isFinished, setIsFinished] = useState(0);
+  const [instance, setInstance] = useState(null);
 
-  const refTypeWriter = useRef(null);
+  const refTypeIt = useRef(null);
 
   //Tablet or mobile
   const isTabletOrMobile = useMediaQuery({
     query: "(max-device-width: 1224px)",
   });
-
-  //Tablet
-  // const isTabletOrMobile = useMediaQuery({
-  //   query: "(max-device-width: 768px)",
-  // });
 
   useEffect(() => {
     fetch(
@@ -119,9 +120,7 @@ const Letter = ({ cpt, setterCpt }) => {
                 const totalString = formatLetter(tempDic);
                 letterToSequence({
                   formatedLetter: totalString,
-                  setterClassName: setClassName,
                   setterFunctionInit: setFunctionTypewriter,
-                  setterFunctionFinished: setIsFinished,
                   marginBottom: isTabletOrMobile ? "3.4" : "2.5",
                 });
               }
@@ -132,32 +131,61 @@ const Letter = ({ cpt, setterCpt }) => {
         )
       )
     );
+
+    setDelay(isTabletOrMobile ? 46 : 36);
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    setDelay(isTabletOrMobile ? 30 : 24);
-    // setDelay(isTabletOrMobile ? 1 : 1);
-    // eslint-disable-next-line
-  }, []);
+    console.log("value : " + isFinished);
+  }, [isFinished]);
+
+  useEffect(() => {
+    console.log("instance :");
+    console.log(instance);
+    console.log(document.getElementsByClassName("ti-cursor")[0]);
+  }, [instance]);
+
+  useEffect(() => {
+    console.log("ref :");
+    console.log(refTypeIt.current.children[0]);
+  }, [refTypeIt]);
+
+  const textInput = useRef(null);
+  useEffect(() => {
+    console.log("ref 2 :");
+    console.log(textInput);
+  }, [textInput]);
 
   return (
     <div className="wrapper">
-      <div className="center">
-        <Typewriter
+      <div className="center" ref={refTypeIt}>
+        <TypeIt
+          getBeforeInit={(e) => functionTypewriter(e)}
+          ref={textInput}
           key={functionTypewriter}
-          ref={refTypeWriter}
           options={{
-            strings: "",
-            cursorClassName: className,
-            delay: delay,
-            autoStart: true,
-            loop: false,
-            showCursor: true,
+            speed: delay,
+            waitUntilVisible: true,
+            lifeLike: true,
+            cursorChar: '<span class="cursor">|</span>',
+
+            beforeStep: async (step, instance) => {
+              setIsFinished(false);
+            },
+            afterComplete: async (step, instance) => {
+              instance.destroy();
+              setIsFinished(true);
+            },
           }}
-          onInit={functionTypewriter}
+          getAfterInit={(instance) => {
+            setInstance(instance);
+            return instance;
+          }}
         />
+
         {isFinished && (
+          // Re-init is finished
           <Timer function={() => increaseValue(cpt, setterCpt)}></Timer>
         )}
       </div>

@@ -28,7 +28,7 @@ const Timer = (props) => {
   });
 
   return (
-    <div class="letter timer" style={{ fontSize: "1em" }}>
+    <div className="letter timer" style={{ fontSize: "1em" }}>
       New letter in {seconds < 10 ? `0${seconds}` : seconds} seconds
     </div>
   );

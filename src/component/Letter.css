@@ -47,6 +47,14 @@
   font-size: 1.8em;
 }
 
+.cursor {
+  font-family: PlayfairDisplay;
+  color: #3f3d56;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.8em;
+}
+
 a {
   /* color: #3f3d56 !important; */
   text-decoration: none;
@@ -65,7 +73,7 @@ br {
 
 .timer {
   position: relative;
-  bottom: 1%;
+  bottom: 2%;
   height: 0;
   max-height: 0;
   min-height: 0;
