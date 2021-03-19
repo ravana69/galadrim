@@ -29,7 +29,7 @@ const formatLetter = (props) => {
     ...props["text"],
     [
       `<p class="letter endline">  <a href=${props["url"]}> ${props["title"]} </a>, written by <span class=author> ${props["author"]} </span> </p>  `,
-      `<div class="letter endline" style="font-size:0.5em;">Icons made by <a href="https://www.flaticon.com/authors/nhor-phai" title="Nhor Phai">Nhor Phai</a></div> <br>`,
+      // `<div class="letter endline" style="font-size:0.5em;">Icons made by <a href="https://www.flaticon.com/authors/nhor-phai" title="Nhor Phai">Nhor Phai</a></div> <br>`,
       //`<div class="letter endline" style="font-size:0.8em;">Made with 💖 by <a href="https://www.linkedin.com/in/gautier-arcin-309405145/" title="Gautier Arcin">Gautier Arcin</a>. Icons made by <a href="https://www.flaticon.com/authors/nhor-phai" title="Nhor Phai">Nhor Phai</a>.</div>`,
     ],
   ];
@@ -61,7 +61,7 @@ const letterToSequence = ({
             "hidden";
         });
         instance.type(formatedLetter[i][0]);
-        instance.type(formatedLetter[i][1]);
+        // instance.type(formatedLetter[i][1]);
         instance.break();
         instance.break();
         instance.break();
@@ -89,6 +89,7 @@ const Letter = ({ cpt, setterCpt }) => {
   const [delay, setDelay] = useState(26);
   const [isFinished, setIsFinished] = useState(0);
   const [instance, setInstance] = useState(null);
+  const [paused, setPaused] = useState(false);
 
   const refTypeIt = useRef(null);
 
@@ -158,7 +159,17 @@ const Letter = ({ cpt, setterCpt }) => {
   }, [textInput]);
 
   return (
-    <div className="wrapper">
+    <div
+      onMouseDown={(e) => {
+        setPaused(true);
+        if (instance != null) instance.freeze();
+      }}
+      onMouseUp={(e) => {
+        setPaused(false);
+        if (instance != null) instance.unfreeze();
+      }}
+      className="wrapper"
+    >
       <div className="center" ref={refTypeIt}>
         <TypeIt
           getBeforeInit={(e) => functionTypewriter(e)}
@@ -186,7 +197,10 @@ const Letter = ({ cpt, setterCpt }) => {
 
         {isFinished && (
           // Re-init is finished
-          <Timer function={() => increaseValue(cpt, setterCpt)}></Timer>
+          <Timer
+            paused={paused}
+            function={() => increaseValue(cpt, setterCpt)}
+          ></Timer>
         )}
       </div>
     </div>
