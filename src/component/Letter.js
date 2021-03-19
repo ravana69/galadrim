@@ -164,9 +164,17 @@ const Letter = ({ cpt, setterCpt }) => {
         setPaused(true);
         if (instance != null) instance.freeze();
       }}
+      onTouchStart={(e) => {
+        setPaused(true);
+        if (instance != null) instance.freeze();
+      }}
       onMouseUp={(e) => {
         setPaused(false);
         if (instance != null) instance.unfreeze();
+      }}
+      onTouchEnd={(e) => {
+        setPaused(true);
+        if (instance != null) instance.freeze();
       }}
       className="wrapper"
     >
