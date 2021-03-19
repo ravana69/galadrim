@@ -127,6 +127,7 @@ br {
   flex-wrap: wrap;
   flex-direction: column-reverse;
   flex-grow: 1;
+  /* cursor: pointer; */
 }
 
 .center {
