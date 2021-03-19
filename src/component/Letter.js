@@ -158,35 +158,53 @@ const Letter = ({ cpt, setterCpt }) => {
     console.log(textInput);
   }, [textInput]);
 
+  const [allowChange, setAllowChange] = useState(true);
+
+  // const allowChangeRef = useRef(allowChange);
+  // allowChangeRef.current = allowChange;
+
   useEffect(() => {
+    console.log(paused);
     if (instance != null) {
       if (paused) {
-        instance.freeze();
+        if (!instance.is("frozen")) {
+          instance.freeze();
+        }
       } else {
         if (instance.is("frozen")) {
-          instance.unfreeze();
+          setTimeout(() => {
+            instance.unfreeze();
+            setAllowChange(true);
+          }, 400);
         }
       }
     }
   }, [paused, instance]);
 
+  const pause = () => {
+    if (allowChange) setPaused(true);
+  };
+
+  const run = () => {
+    if (allowChange) {
+      setAllowChange(false);
+      setPaused(false);
+    }
+  };
+
   return (
     <div
       onMouseDown={(e) => {
-        setPaused(true);
-        // if (instance != null) instance.freeze();
+        pause();
       }}
       onTouchStart={(e) => {
-        setPaused(true);
-        // if (instance != null) instance.freeze();
+        pause();
       }}
       onMouseUp={(e) => {
-        setPaused(false);
-        // if (instance != null) if (instance.is("frozen")) instance.unfreeze();
+        run();
       }}
       onTouchEnd={(e) => {
-        setPaused(false);
-        // if (instance != null) if (instance.is("frozen")) instance.unfreeze();
+        run();
       }}
       className="wrapper"
     >
