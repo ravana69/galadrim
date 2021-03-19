@@ -168,7 +168,7 @@ const Letter = ({ cpt, setterCpt }) => {
         }
       }
     }
-  }, [paused]);
+  }, [paused, instance]);
 
   return (
     <div
