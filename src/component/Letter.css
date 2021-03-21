@@ -47,17 +47,22 @@
   font-size: 1.8em;
 }
 
+/* .cursor2 {
+  text-align: none !important;
+} */
+
 .cursor {
-  font-family: PlayfairDisplay;
-  color: #3f3d56;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 1.8em;
+  font-family: PlayfairDisplay !important;
+  color: #3f3d56 !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: xx-large;
+  /* font-size: 1.8em !important; */
 }
 
 a {
   /* color: #3f3d56 !important; */
-  text-decoration: none;
+  /* text-decoration: none; */
 }
 
 br {
