@@ -105,7 +105,7 @@ const letterToSequence = ({ setterFunctionInit, marginBottom }) => {
     instance.pause(500);
 
     instance.type(
-      "<span class=letter>J'ai découvert ✨ Galadrim ✨ au contact de Mathieu,</span>"
+      "<span class=letter>J'ai découvert ✨ Galadrim ✨ au contact de Matthieu,</span>"
     );
     instance.type("<span class=letter> Valentin et Pierre. </span>");
     instance.pause(1500);
