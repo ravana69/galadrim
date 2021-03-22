@@ -6,107 +6,129 @@ import TypeIt from "typeit-react";
 
 const letterToSequence = ({ setterFunctionInit, marginBottom }) => {
   const tempo = () => (instance) => {
-    instance.type("<span class=letter>Salut Galadrim 👋 !</span>");
-    instance.pause(2500);
-    instance.type('<br style="margin-bottom: ' + marginBottom + 'em;">');
+    // instance.type("<span class=letter>Salut Galadrim 👋 !</span>");
+    // instance.pause(2500);
+    // instance.type('<br style="margin-bottom: ' + marginBottom + 'em;">');
 
-    instance.type("<span class=letter>Je m'appelle gautier arcin.</span>");
-    instance.pause(1000);
-    instance.move(-5, { speed: 45 });
-    instance.pause(300);
-    instance.delete(1);
-    instance.pause(300);
-    instance.type("<span class=letter>A</span>");
-    instance.pause(300);
-    instance.move(-8, { speed: 45 });
-    instance.pause(300);
-    instance.delete(1);
-    instance.pause(300);
-    instance.type("<span class=letter>G</span>");
-    instance.pause(700);
-    instance.move("END", { speed: 40 });
-    instance.pause(1000);
+    // instance.type("<span class=letter>Je m'appelle gautier arcin.</span>");
+    // instance.pause(1000);
+    // instance.move(-5, { speed: 45 });
+    // instance.pause(300);
+    // instance.delete(1);
+    // instance.pause(300);
+    // instance.type("<span class=letter>A</span>");
+    // instance.pause(300);
+    // instance.move(-8, { speed: 45 });
+    // instance.pause(300);
+    // instance.delete(1);
+    // instance.pause(300);
+    // instance.type("<span class=letter>G</span>");
+    // instance.pause(700);
+    // instance.move("END", { speed: 40 });
+    // instance.pause(1000);
 
-    instance.type("<span class=letter> Je suis ingénieur full-st<span>");
-    instance.pause(400);
-    instance.delete(7, { speed: 200 });
-    instance.pause(300);
-    instance.type("<span class=letter> robotique,</span>");
-    instance.pause(300);
+    // instance.type("<span class=letter> Je suis ingénieur full-st<span>");
+    // instance.pause(400);
+    // instance.delete(7, { speed: 200 });
+    // instance.pause(300);
+    // instance.type("<span class=letter> robotique,</span>");
+    // instance.pause(300);
+    // instance.type(
+    //   "<span class=letter> désireux de se reconvertir en ingénieur full-stack <span>"
+    // );
+    // instance.pause(300);
+    // instance.type("<span class=letter>(full-remote).<span>", { speed: 60 });
+    // instance.pause(2000);
+    // instance.type('<br style="margin-bottom: ' + marginBottom + 'em;">');
+    // instance.pause(500);
+
+    // instance.type(
+    //   "<span class=letter>Je suis diplômé de l'école d'ingénieur Upssitech, </span>"
+    // );
+    // instance.pause(300);
+    // instance.type(
+    //   '<span class=letter style="font-size: 1.3em !important; "> (une glorieuse rang C), </span>'
+    // );
+    // instance.pause(300);
+    // instance.type(
+    //   "<span class=letter> en <b>S</b>ystèmes <b>R</b>obotiques et <b>I</b>nteractifs. </span>"
+    // );
+    // instance.pause(1500);
+
+    // instance.type(
+    //   "<span class=letter>Concernant mon parcours professionnel,</span>"
+    // );
+    // instance.pause(300);
+    // instance.type(
+    //   "<span class=letter> j'ai eu l'opportunité d'effectuer un stage en Espagne, </span>"
+    // );
+    // instance.pause(300);
+    // instance.type("<span class=letter> en M1,</span>");
+    // instance.pause(200);
+    // instance.type(
+    //   '<span class=letter> qui a abouti sur la publication d\'un <a href="https://link.springer.com/article/10.1007/s00170-020-06234-5" >article scientifique</a>. </span>'
+    // );
+    // instance.pause(1500);
+
+    // instance.type(
+    //   "<span class=letter>J'ai ensuite pû travailler en tant qu'ingénieur robotique spatiale </span>"
+    // );
+    // instance.pause(300);
+    // instance.type(
+    //   '<span class=letter style="font-size: 1.3em !important; ">(en alternance)</span>'
+    // );
+    // instance.pause(300);
+    // instance.type(
+    //   '<span class=letter> sur le projet <a href="https://www.h2020-pulsar.eu/" > H2020 Pulsar</a>,</span>'
+    // );
+    // instance.pause(300);
+    // instance.type(
+    //   '<span class=letter> issu du plan <a href="https://www.esa.int/Enabling_Support/Space_Engineering_Technology/PERASPERA_Space_Robotic_Technologies" >PERESPERA</a> de l\'<b>E</b>uropean <b>S</b>pace <b>A</b>gency.</span>'
+    // );
+    // instance.pause(1500);
+
+    // instance.type("<span class=letter> Finalement,</span>");
+    // instance.pause(300);
+    // instance.type(
+    //   "<span class=letter> j'occupe actuellement un poste d'ingénieur d'études à l'IRIT,</span>"
+    // );
+    // instance.pause(300);
+    // instance.type(
+    //   '<span class=letter> sur le <a href="https://linto.ai/"> projet Linto</a>, </span>'
+    // );
+    // instance.pause(300);
+    // instance.type(
+    //   "<span class=letter> où je travaille sur des thématiques de data scientist.</span>"
+    // );
+    // instance.pause(2000);
+    // instance.type('<br style="margin-bottom: ' + marginBottom + 'em;">');
+    // instance.pause(500);
+
     instance.type(
-      "<span class=letter> désireux de se reconvertir en ingénieur full-stack <span>"
+      "<span class=letter>J'ai découvert ✨ Galadrim ✨ au contact de Mathieu</span>"
     );
     instance.pause(300);
-    instance.type("<span class=letter>(full-remote).<span>", { speed: 60 });
-    instance.pause(2000);
-    instance.type('<br style="margin-bottom: ' + marginBottom + 'em;">');
-    instance.pause(500);
-
     instance.type(
-      "<span class=letter>Je suis diplômé de l'école d'ingénieur Upssitech, </span>"
+      '<span class=letter style="font-size: 1.3em !important; "> (Attendez </span>',
+      { speed: 50 }
     );
+    instance.type(
+      '<span class=letter style="font-size: 1.3em !important; ">.....)</span>',
+      { speed: 500 }
+    );
+    instance.move(-21, { speed: 35 });
+    instance.pause(300);
+    instance.type('<span style="color:red">t</span>');
+    instance.pause(300);
+    instance.move("END", { speed: 35 });
+    instance.pause(300);
+    instance.delete(15, { speed: 150 });
     instance.pause(300);
     instance.type(
-      '<span class=letter style="font-size: 1.3em !important; "> (une glorieuse rang C), </span>'
-    );
-    instance.pause(300);
-    instance.type(
-      "<span class=letter> en <b>S</b>ystèmes <b>R</b>obotiques et <b>I</b>nteractifs. </span>"
+      '<span class=letter style="font-size: 1.3em !important; ">désolé Mat<span style="color:red">t</span>hieu),</span>'
     );
     instance.pause(1500);
 
-    instance.type(
-      "<span class=letter>Concernant mon parcours professionnel,</span>"
-    );
-    instance.pause(300);
-    instance.type(
-      "<span class=letter> j'ai eu l'opportunité d'effectuer un stage en Espagne, </span>"
-    );
-    instance.pause(300);
-    instance.type("<span class=letter> en M1,</span>");
-    instance.pause(200);
-    instance.type(
-      '<span class=letter> qui a abouti sur la publication d\'un <a href="https://link.springer.com/article/10.1007/s00170-020-06234-5" >article scientifique</a>. </span>'
-    );
-    instance.pause(1500);
-
-    instance.type(
-      "<span class=letter>J'ai ensuite pû travailler en tant qu'ingénieur robotique spatiale </span>"
-    );
-    instance.pause(300);
-    instance.type(
-      '<span class=letter style="font-size: 1.3em !important; ">(en alternance)</span>'
-    );
-    instance.pause(300);
-    instance.type(
-      '<span class=letter> sur le projet <a href="https://www.h2020-pulsar.eu/" > H2020 Pulsar</a>,</span>'
-    );
-    instance.pause(300);
-    instance.type(
-      '<span class=letter> issu du plan <a href="https://www.esa.int/Enabling_Support/Space_Engineering_Technology/PERASPERA_Space_Robotic_Technologies" >PERESPERA</a> de l\'<b>E</b>uropean <b>S</b>pace <b>A</b>gency.</span>'
-    );
-    instance.pause(1500);
-
-    instance.type("<span class=letter> Finalement,</span>");
-    instance.pause(300);
-    instance.type(
-      "<span class=letter> j'occupe actuellement un poste d'ingénieur d'études à l'IRIT,</span>"
-    );
-    instance.pause(300);
-    instance.type(
-      '<span class=letter> sur le <a href="https://linto.ai/"> projet Linto</a>, </span>'
-    );
-    instance.pause(300);
-    instance.type(
-      "<span class=letter> où je travaille sur des thématiques de data scientist.</span>"
-    );
-    instance.pause(2000);
-    instance.type('<br style="margin-bottom: ' + marginBottom + 'em;">');
-    instance.pause(500);
-
-    instance.type(
-      "<span class=letter>J'ai découvert ✨ Galadrim ✨ au contact de Matthieu,</span>"
-    );
     instance.type("<span class=letter> Valentin et Pierre. </span>");
     instance.pause(1500);
     instance.type("<span class=letter>Grâce à eux,</span>");
